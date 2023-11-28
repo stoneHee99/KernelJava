@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>성적조회</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>학번</th>
+                <th>중점과목</th>
+                <th>점수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="score : ${scores}">
+                <td th:text="${score.studentName}"></td>
+                <td th:text="${score.studentId}"></td>
+                <td th:text="${score.essentialLectureName}"></td>
+                <td th:text="${score.score + ':' + score.grade}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

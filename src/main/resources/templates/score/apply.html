@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>수강 신청</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+  <form action="/score/apply" method="post">
+    <label for="studentId">
+      학생
+      <select id="studentId" name="studentId" required>
+        <option th:each="student : ${students}" th:text="${student.name + '(' + student.id + ')'}" th:value="${student.id}"/>
+      </select>
+    </label>
+    <label for="lectureId">
+      강의
+      <select id="lectureId" name="lectureId" required>
+        <option th:each="lecture : ${lectures}" th:text="${lecture.name + '(' + lecture.id + ')'}" th:value="${lecture.id}"/>
+      </select>
+    </label>
+    <input th:if="${#lists.size(students) != 0}" type="submit" value="수강신청">
+    <span style="color: red" th:if="${#lists.size(students) == 0}">학생을 먼저 등록해주세요.</span>
+  </form>
+</body>
+</html>

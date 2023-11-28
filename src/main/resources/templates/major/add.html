@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>학과 등록</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+    <form action="/major/add" method="post">
+        <label for="majorName">
+            학과명
+            <input id="majorName" name="majorName" type="text"/>
+        </label>
+        <label for="essentialLectureId">
+            필수강의
+            <select id="essentialLectureId" name="essentialLectureId">
+                <option th:each="lecture : ${lectures}" th:text="${lecture.name + '(' + lecture.id + ')'}" th:value="${lecture.id}">
+            </select>
+        </label>
+        <input th:if="${#lists.size(lectures) != 0}" type="submit" value="등록">
+        <span style="color: red;" th:if="${#lists.size(lectures) == 0}">강의를 먼저 등록해주세요.</span>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>성적조회 - 강의 선택</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>강의명</th>
+        <th>링크</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:if="${#lists.size(lectures) == 0}">
+        <td colspan="2">수강신청된 강의가 없습니다.</td>
+      </tr>
+      <tr th:each="lecture: ${lectures}">
+        <td th:text="${lecture.name}"></td>
+        <td><a th:href="${'/score/' + lecture.id}">성적조회</a></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

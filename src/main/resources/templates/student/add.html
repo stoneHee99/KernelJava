@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>학생 등록</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+  <form action="/student/add" method="post">
+    <label for="studentName">
+      이름
+      <input id="studentName" name="studentName" type="text" required/>
+    </label>
+    <label for="studentId">
+      학번
+      <input id="studentId" name="studentId" type="text" required/>
+    </label>
+    <label for="majorId">
+      전공
+      <select id="majorId" name="majorId" required>
+        <option th:each="major : ${majors}" th:text="${major.name + '(' + major.id + ')'}" th:value="${major.id}"></option>
+      </select>
+    </label>
+    <input th:if="${#lists.size(majors) != 0}" type="submit" value="등록">
+    <span style="color: red" th:if="${#lists.size(majors) == 0}">학과를 먼저 등록해주세요.</span>
+  </form>
+</body>
+</html>

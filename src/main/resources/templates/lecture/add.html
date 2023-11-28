@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>강의 등록</title>
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+  <form action="/lecture/add" method="post">
+    <label for="lectureName">
+      강의명
+      <input id="lectureName" name="lectureName" type="text" required/>
+    </label>
+    <label for="lectureType">
+      채점방식
+      <select id="lectureType" name="lectureType" required>
+        <option th:each="type: ${lectureTypes}" th:text="${type}" th:value="${type}"></option>
+      </select>
+    </label>
+    <input type="submit" value="등록">
+  </form>
+</body>
+</html>
